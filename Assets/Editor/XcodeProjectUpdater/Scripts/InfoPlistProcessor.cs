@@ -9,15 +9,34 @@ using System.IO;
 /// </summary>
 public static class InfoPlistProcessor {
 
+	//=================================================================================
+	//内部
+	//=================================================================================
+
+	//info.plistのパスを取得
+	private static string GetInfoPlistPath(string buildPath){
+		return Path.Combine(buildPath, XcodeProjectSetting.INFO_PLIST_NAME);
+	}
+
+	//info.plistを取得
+	private static PlistDocument GetInfoPlist(string buildPath){
+		string plistPath = GetInfoPlistPath(buildPath);
+		PlistDocument plist = new PlistDocument();
+		plist.ReadFromFile(plistPath);
+
+		return plist;
+	}
+
+	//=================================================================================
+	//外部
+	//=================================================================================
+
 	/// <summary>
 	/// URLスキームの設定。既に登録されていても重複しない
 	/// </summary>
 	public static void SetURLSchemes(string buildPath, string urlIdentifier, List<string> schemeList){
 
-		//info.plistを取得
-		string plistPath = Path.Combine(buildPath, XcodeProjectSetting.INFO_PLIST_NAME);
-		PlistDocument plist = new PlistDocument();
-		plist.ReadFromFile(plistPath);
+		PlistDocument plist = GetInfoPlist(buildPath);
 
 		//URL typesを取得、設定されていなければ作成
 		PlistElementArray urlTypes;
@@ -60,17 +79,14 @@ public static class InfoPlistProcessor {
 		}
 
 		//plist保存
-		plist.WriteToFile(plistPath);
+		plist.WriteToFile(GetInfoPlistPath(buildPath));
 	}
 
 	/// <summary>
 	/// デフォルトで設定されているスプラッシュ画像の設定を消す
 	/// </summary>
 	public static void DeleteLaunchiImagesKey(string buildPath){
-		//info.plistを取得
-		string plistPath = Path.Combine(buildPath, XcodeProjectSetting.INFO_PLIST_NAME);
-		PlistDocument plist = new PlistDocument();
-		plist.ReadFromFile(plistPath);
+		PlistDocument plist = GetInfoPlist (buildPath);
 
 		//keyが存在していれば削除
 		if(plist.root.values.ContainsKey(XcodeProjectSetting.UI_LAUNCHI_IMAGES_KEY)){
@@ -78,7 +94,21 @@ public static class InfoPlistProcessor {
 		}
 
 		//plist保存
-		plist.WriteToFile(plistPath);
+		plist.WriteToFile(GetInfoPlistPath(buildPath));
+	}
+
+	/// <summary>
+	/// ATSを有効or無効にする
+	/// </summary>
+	public static void SetATS(string buildPath, bool enableATS){
+		PlistDocument plist = GetInfoPlist (buildPath);
+
+		//ATSの設定
+		PlistElementDict atsDict = plist.root.CreateDict (XcodeProjectSetting.ATS_KEY);
+		atsDict.SetBoolean (XcodeProjectSetting.ALLOWS_ARBITRARY_LOADS_KEY, !enableATS);
+
+		//plist保存
+		plist.WriteToFile(GetInfoPlistPath(buildPath));
 	}
 
 }

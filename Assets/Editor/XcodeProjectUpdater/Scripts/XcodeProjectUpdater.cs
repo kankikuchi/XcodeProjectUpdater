@@ -92,6 +92,9 @@ public class XcodeProjectUpdater : MonoBehaviour {
 			InfoPlistProcessor.DeleteLaunchiImagesKey (buildPath);
 		}
 
+		//ATSの設定
+		InfoPlistProcessor.SetATS (buildPath, setting.EnableATS);
+
 	}
 
 }

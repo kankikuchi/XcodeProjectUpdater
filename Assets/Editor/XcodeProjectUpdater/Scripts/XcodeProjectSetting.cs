@@ -34,6 +34,9 @@ public class XcodeProjectSetting : ScriptableObject {
 
 	public const string UI_LAUNCHI_IMAGES_KEY = "UILaunchImages";
 
+	public const string ATS_KEY                    = "NSAppTransportSecurity";
+	public const string ALLOWS_ARBITRARY_LOADS_KEY = "NSAllowsArbitraryLoads";
+
 	//=================================================================================
 	//設定値
 	//=================================================================================
@@ -76,6 +79,9 @@ public class XcodeProjectSetting : ScriptableObject {
 
 	//BitCodeを有効にするか
 	public bool EnableBitCode = false;
+
+	//ATSを有効にするか
+	public bool EnableATS = false;
 
 	//デフォルトで設定されているスプラッシュ画像の設定を消すか
 	public bool NeedToDeleteLaunchiImagesKey = true;
