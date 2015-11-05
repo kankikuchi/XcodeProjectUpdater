@@ -38,6 +38,8 @@ public class XcodeProjectSetting : ScriptableObject {
 	public const string ATS_KEY                    = "NSAppTransportSecurity";
 	public const string ALLOWS_ARBITRARY_LOADS_KEY = "NSAllowsArbitraryLoads";
 
+	public const string APPLICATION_QUERIES_SCHEMES_KEY = "LSApplicationQueriesSchemes";
+
 	//=================================================================================
 	//設定値
 	//=================================================================================
@@ -76,6 +78,11 @@ public class XcodeProjectSetting : ScriptableObject {
 		/*new CompilerFlagsSet ("-fno-objc-arc", new List<string> () {
 			"Plugin/Plugin.mm"
 		})*/ //初期設定例
+	};
+
+	//canOpenURLで判定可能にするスキーム
+	public List<string>ApplicationQueriesSchemes = new List<string>(){
+
 	};
 
 	//BitCodeを有効にするか

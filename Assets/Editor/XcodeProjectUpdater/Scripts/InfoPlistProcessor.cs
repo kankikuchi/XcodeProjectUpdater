@@ -83,6 +83,32 @@ public static class InfoPlistProcessor {
 	}
 
 	/// <summary>
+	/// canOpenURLで判定可能にするスキームを登録する
+	/// </summary>
+	public static void SetApplicationQueriesSchemes(string buildPath, List<string> _applicationQueriesSchemes){
+		PlistDocument plist = GetInfoPlist (buildPath);
+
+		//LSApplicationQueriesSchemesを取得、設定されていなければ作成
+		PlistElementArray queriesSchemes;
+		if(plist.root.values.ContainsKey(XcodeProjectSetting.APPLICATION_QUERIES_SCHEMES_KEY)){
+			queriesSchemes = plist.root[XcodeProjectSetting.APPLICATION_QUERIES_SCHEMES_KEY].AsArray();
+		}
+		else{
+			queriesSchemes = plist.root.CreateArray (XcodeProjectSetting.APPLICATION_QUERIES_SCHEMES_KEY);
+		}
+
+		//既に設定されていなければスキームを登録
+		foreach (string queriesScheme in _applicationQueriesSchemes) {
+			if(!queriesSchemes.values.Contains(new PlistElementString(queriesScheme))){
+				queriesSchemes.AddString(queriesScheme);
+			}
+		}
+
+		//plist保存
+		plist.WriteToFile(GetInfoPlistPath(buildPath));
+	}
+
+	/// <summary>
 	/// デフォルトで設定されているスプラッシュ画像の設定を消す
 	/// </summary>
 	public static void DeleteLaunchiImagesKey(string buildPath){
