@@ -92,6 +92,9 @@ public static class InfoPlistProcessor {
 		if(plist.root.values.ContainsKey(XcodeProjectSetting.UI_LAUNCHI_IMAGES_KEY)){
 			plist.root.values.Remove (XcodeProjectSetting.UI_LAUNCHI_IMAGES_KEY);
 		}
+		if(plist.root.values.ContainsKey(XcodeProjectSetting.UI_LAUNCHI_STORYBOARD_NAME_KEY)){
+			plist.root.values.Remove (XcodeProjectSetting.UI_LAUNCHI_STORYBOARD_NAME_KEY);
+		}
 
 		//plist保存
 		plist.WriteToFile(GetInfoPlistPath(buildPath));

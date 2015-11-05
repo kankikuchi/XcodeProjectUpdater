@@ -32,7 +32,8 @@ public class XcodeProjectSetting : ScriptableObject {
 	public const string URL_IDENTIFIER_KEY = "CFBundleURLName";
 	public const string URL_SCHEMES_KEY    = "CFBundleURLSchemes";
 
-	public const string UI_LAUNCHI_IMAGES_KEY = "UILaunchImages";
+	public const string UI_LAUNCHI_IMAGES_KEY          = "UILaunchImages";
+	public const string UI_LAUNCHI_STORYBOARD_NAME_KEY = "UILaunchStoryboardName~iphone";
 
 	public const string ATS_KEY                    = "NSAppTransportSecurity";
 	public const string ALLOWS_ARBITRARY_LOADS_KEY = "NSAllowsArbitraryLoads";
