@@ -3,7 +3,7 @@ XcodeAPIを使い、UnityからXcodeプロジェクトを書き出す際に諸�
 設定項目はInspetorから設定する。
 
 <br />
-![Alt text](http://cdn-ak.f.st-hatena.com/images/fotolife/k/kan_kikuchi/20151106/20151106075359.png)
+![Alt text](http://cdn-ak.f.st-hatena.com/images/fotolife/k/kan_kikuchi/20151212/20151212225116.png)
 <br /><br />
 
 以下、導入&解説記事
