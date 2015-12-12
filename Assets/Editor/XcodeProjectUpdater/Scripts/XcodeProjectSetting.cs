@@ -40,6 +40,9 @@ public class XcodeProjectSetting : ScriptableObject {
 
 	public const string APPLICATION_QUERIES_SCHEMES_KEY = "LSApplicationQueriesSchemes";
 
+	public const string STATUS_HIDDEN_KEY         = "UIStatusBarHidden";
+	public const string STATUS_BAR_APPEARANCE_KEY = "UIViewControllerBasedStatusBarAppearance";
+
 	//=================================================================================
 	//設定値
 	//=================================================================================
@@ -90,6 +93,9 @@ public class XcodeProjectSetting : ScriptableObject {
 
 	//ATSを有効にするか
 	public bool EnableATS = false;
+
+	//ステータスバーを有効にするか
+	public bool EnableStatusBar = false;
 
 	//デフォルトで設定されているスプラッシュ画像の設定を消すか
 	public bool NeedToDeleteLaunchiImagesKey = true;

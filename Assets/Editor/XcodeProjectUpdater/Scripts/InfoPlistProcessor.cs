@@ -140,4 +140,18 @@ public static class InfoPlistProcessor {
 		plist.WriteToFile(GetInfoPlistPath(buildPath));
 	}
 
+	/// <summary>
+	/// ステータスバーの表示設定
+	/// </summary>
+	public static void SetStatusBar(string buildPath, bool enable){
+		PlistDocument plist = GetInfoPlist (buildPath);
+
+		//ステータスバーの表示設定
+		plist.root.SetBoolean (XcodeProjectSetting.STATUS_HIDDEN_KEY,        !enable);
+		plist.root.SetBoolean (XcodeProjectSetting.STATUS_BAR_APPEARANCE_KEY, enable);
+
+		//plist保存
+		plist.WriteToFile(GetInfoPlistPath(buildPath));
+	}
+
 }

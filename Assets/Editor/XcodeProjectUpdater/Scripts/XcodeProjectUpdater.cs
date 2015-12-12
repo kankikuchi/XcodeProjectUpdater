@@ -95,6 +95,9 @@ public class XcodeProjectUpdater : MonoBehaviour {
 		//ATSの設定
 		InfoPlistProcessor.SetATS (buildPath, setting.EnableATS);
 
+		//ステータスバーの設定
+		InfoPlistProcessor.SetStatusBar (buildPath, setting.EnableStatusBar);
+
 	}
 
 }
